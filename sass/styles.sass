@@ -24,7 +24,81 @@ $montserrat_paragraph: #0A252D
     letter-spacing: 0.2px
     color: #FFFFFF
     display: block
+//body::-webkit-scrollbar
+//    display: none
+body
+    overflow-X: hidden
+.intro
+    background: url(../images/photos/ghosts.png) center center/cover no-repeat
+    min-height: 100%
+    min-width: 1024px
+    width: 100%
+    position: fixed
+    top: 0
+    left: 0
+    margin: 0
+    z-index: 2000
+    animation: fadeOutUp
+    animation-delay: 6.5s
+    //&::-webkit-scrollbar
+    //    display: none
+    &__img
+        margin: auto
+        display: block
+        width: 300px
+    //img
+    //    width: 100%
+    &__text
+        display: block
+        margin: 0 auto
+        font-size: 60px
+        position: absolute
+        top: 50%
+        left: 50%
+        width: 80%
+        transform: translate(-50%, -50%)
+        color: #FFFFFF
+        font-family: 'Source Serif 4'
+        z-index: 2000
+    .fade-in
+        animation: fadeIn
+        animation-delay: 1.5s
+        animation-duration: 2.5s
+        animation-fill-mode: forwards
+    .noise
+        //animation: fadeInUp
+        //animation-duration: 2s
+        &::before
+            position: fixed
+            top: 0
+            left: 0
+            width: 100vw
+            height: 100vh
+            content: ""
+            opacity: 0.2
+            z-index: 1000
+            pointer-events: none
+            filter: brightness(80%)
+            background: url(../images/photos/noise_2.gif)
 
+@keyframes fadeIn
+    from
+        opacity: 0
+    10%
+        opacity: 1
+    90%
+        opacity: 1
+    to
+        opacity: 0
+
+.display-none
+    display: none
+
+.index
+    visibility: hidden
+.fade-in
+    opacity: 0
+    animation: fadeIn 1s ease-in
 header
     font-family: 'Montserrat'
     position: relative
@@ -59,8 +133,7 @@ header
                 color: rgba(0, 0, 0, 0.5)
                 padding-left: 20px
             .header__search:focus
-                background: #d9e0e7
-                border: 1px solid #0B333E
+                border: 2px solid #0B333E
                 outline: none
     #ui-datepicker-div
         top: 70px
@@ -78,7 +151,7 @@ header
             text-decoration: none
             margin: 0 35px
         &__link:hover
-            font-weight: 700
+            color: $source_serif_text
     select
         border: none
         font-weight: 600
@@ -152,6 +225,11 @@ a:hover
         right: 15%
     .slick-next
         right: 10%
+    .slick-arrow
+        transition-timing-function: ease
+        transition: 0.5s
+    .slick-arrow:hover
+        transform: scale(1.1)
     button
         img
             width: 55px
@@ -187,20 +265,25 @@ a:hover
     color: $source_serif_text
     text-align: end
     display: flex
-    justify-content: space-between
+    //justify-content: space-between
     padding: 0
     align-items: center
     text-decoration: none
     min-height: 120px
     font-family: 'Montserrat'
     letter-spacing: 0.2px
-    //&::after
-    //    content: ""
-    //    position: absolute
-    //    width: 180px
-    //    bottom: 45px
-    //    height: 2px
-    //    background: $source_serif_text
+    &:hover
+        color: #B17C3D
+    &:after
+        margin-left: 10px
+        content: ''
+        width: 60px
+        height: 1.6px
+        background: #B17C3D
+        left: 0
+        transition: left .3s ease-out,right .3s ease-out,width .3s ease-out
+    &:hover:after
+        width: 100px
     &__block
         padding: 15px 0
     &__blocks
@@ -244,6 +327,8 @@ a:hover
     height: 120px
     display: flex
     align-items: center
+    &:hover
+        box-shadow: 3px 3px 6px rgb(82, 134, 148)
     &__block
         font-family: 'Montserrat'
         .info__subheader
@@ -271,6 +356,12 @@ a:hover
         position: relative
         width: 340px
         margin: 0 auto
+        animation: fadeInRight
+        transition-timing-function: ease
+        transition: 1s
+        &:hover
+            box-shadow: 3px 3px 3px  rgba(0, 0, 0, 0.3)
+            scale: 1.05
         img
             width: 100%
         &__title
@@ -354,6 +445,11 @@ a:hover
     img
         height: 100%
         margin-right: 46px
+        transition-timing-function: ease
+        transition: 0.8s
+        &:hover
+            scale: 1.05
+            box-shadow: 2px 1px 15px 10px rgba(0, 0, 0, 0.25)
 .affiches
     margin: 45px 0 90px 0
     &__menu
@@ -388,7 +484,11 @@ a:hover
     position: relative
     display: block
     margin: 0 auto 77px auto
-    transition: 2s
+    //transition: 2s
+    transition: 0.8s
+    &:hover
+        scale: 1.05
+        box-shadow: 2px 1px 10px 10px rgba(0, 0, 0, 0.25)
     .date
         position: absolute
         top: 24px
@@ -459,12 +559,6 @@ a:hover
             color: #FFFFFF
             background: #01607c
 
-//.card:hover
-//    width: 346px
-//    height: 708px
-//    transition: 2s
-//    transform: translateY(-10px)
-
 .ui-datepicker
     margin-top: 60px
     z-index: 1000
@@ -481,6 +575,12 @@ a:hover
     line-height: 20px
     letter-spacing: 1.5px
     color: $montserrat_paragraph
+
+.about__theatre
+    .about__text
+        animation: fadeInLeft
+    img
+        animation: fadeInRight
 
 .about__top
     padding: 54px 0 45px 0
@@ -621,7 +721,7 @@ a:hover
         display: flex
         justify-content: space-between
         align-items: center
-        margin-bottom: 70px
+        //margin-bottom: 70px
         .more
             color: $montserrat_text
     &__subheader
@@ -644,6 +744,7 @@ a:hover
             letter-spacing: 1.5px
             color: rgba(0, 0, 0, 0.5)
             font-size: 14px
+
     &__choice
         margin-top: 47px
         width: 388px
@@ -703,8 +804,10 @@ a:hover
     border-radius: 100%
     background: #C4C4C4
 .sold
-    background: #666666
-.orange
+    background: #666
+.not__reserved
+    background: #C4C4C4
+.reserved
     background: #D95335
 
 .booking
@@ -763,6 +866,8 @@ a:hover
                 align-items: center
                 margin: 0 auto
                 margin-bottom: 10px
+                .ellipse
+                    cursor: pointer
                 &__1
                     width: 335px
                 &__2
@@ -859,6 +964,9 @@ footer
     .footer__logo img
         display: block
         margin: 0 auto
+        &:hover
+            animation-name: logo_beat
+            animation-duration: 2s
     .theatre__title
         margin: 10px 0 28px 0
         font-family: 'Source Serif 4'
@@ -898,6 +1006,9 @@ footer
             align-items: flex-end
             &__link
                 margin-top: 35px
+                img:hover
+                    animation-name: logo_beat
+                    animation-duration: 2s
         .menu
             display: flex
             justify-content: space-between
@@ -912,7 +1023,7 @@ footer
                 text-decoration: none
                 color: #FFB84F
             a:hover
-                font-weight: 700
+                color: #fff
         .subscription
             width: 620px
             &__text
@@ -929,12 +1040,15 @@ footer
             input
                 width: 406px
                 height: 36px
-                border: 2px solid $source_serif_text
+                border: 1px solid $source_serif_text
                 background: none
                 padding-left: 16px
                 font-weight: 600
                 font-size: 14px
                 color: rgba(255, 255, 255, 0.6)
+                &:focus
+                    outline: none
+                    border: 2px solid $source_serif_text
             &__subscribe
                 width: 190px
                 height: 36px
@@ -990,6 +1104,7 @@ footer
         text-decoration: none
     &__buy:hover
         transition: 0.5s
+        color: #FFFFFF
         background-color: #704a27
 .content
     margin: 50px 0 116px 0
@@ -1116,6 +1231,9 @@ footer
                     width: 28px
 
 @media (max-width: 1200px)
+    .intro
+        &__text
+            font-size: 50px
     header
         nav
             .menu__link
@@ -1136,6 +1254,11 @@ footer
         &__header
             font-size: 56px
             width: 800px
+    .more
+        &:after
+            width: 30px
+        &:hover:after
+            width: 50px
     .info
         &__subheader
             font-size: 11px
@@ -1230,6 +1353,10 @@ footer
                     margin-top: 10px
 
 @media (max-width: 991px)
+    .intro
+        display: none
+    .index
+        visibility: visible
     header
         nav
             min-height: 130px
@@ -1244,6 +1371,9 @@ footer
             right: 16%
         .slick-next
             right: 8%
+    .more
+        &:after
+            display: none
     .promo
         &__header
             width: 600px
@@ -1278,6 +1408,9 @@ footer
                 font-size: 18px
         .hidden
             display: block
+    [data-aos-delay]
+        &.premiere__card
+            transition-delay: 0s !important
     .about
         margin-bottom: 130px
         &__content
@@ -1620,7 +1753,7 @@ footer
     .about
         &__text
             font-size: 14px
-            margin: 30px 10px
+            margin: 20px 10px 10px 10px
         .more
             font-size: 15px
         img
@@ -1637,25 +1770,37 @@ footer
                 font-size: 15px
         &__buy
             margin: 25px 0
+
     .affiches
         &__menu
             padding: 3px
+        .more
+            font-size: 16px
+            min-height: unset
     .card
         width: 300px
         height: 687px
         &__buy
             width: 270px
+            padding-top: 15px
+            font-size: 16px
+        &:hover
+            scale: unset
+            box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.25)
     .about__top
         .description__paragraph
             padding-left: 10px
+            font-size: 14px
         img
             padding-left: 5px
     .about__middle, .about__bottom
         .description__paragraph
             padding-left: 10px
+            font-size: 14px
     .about__content__inside
         .description__paragraph
             padding-left: 10px
+            font-size: 14px
         img
             padding-left: 5px
     .payment__sent
